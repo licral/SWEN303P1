@@ -1,0 +1,12 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+head
+  title=title
+
+block body
+  +navbar("Colenso Project", "dropdown_menu")
+    +nav_item("/", "active") Home
+    +nav_item("list") Browse
+  .container
+    h1= title
+    p Go to 'Browse' to list all the letters
