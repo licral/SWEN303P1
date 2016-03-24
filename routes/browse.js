@@ -12,12 +12,15 @@ var display;
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	display = "browse";
-	if(req.query.textfield == null){
+	if(req.query.queryfield == null && req.query.fullfield == null){
 		query = "XQUERY db:list('Colenso')";
-		query_type = "Browse"
+		query_type = "Browse";
+	} else if (req.query.queryfield == "" || req.query.queryfield == null){
+		query = xquery + "//TEI[. contains text " + req.query.fullfield + "]";
+		query_type = "Search Results";
 	} else {
-		query = xquery + req.query.textfield;
-		query_type = "Search Results"
+		query = xquery + req.query.queryfield;
+		query_type = "Search Results";
 	}
 	client.execute(query,
 		function(error, result){
@@ -31,6 +34,7 @@ router.get('/', function(req, res, next) {
 					display: display
 					});
 			}
+			console.log(result);
 		});
 });
 

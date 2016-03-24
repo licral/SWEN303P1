@@ -9,15 +9,17 @@ block body
 		.container
 			h1 #{title}
 			if display === "browse"
-				p Enter XQUERY search here:
-				form(action = "/browse", method = "get")
-					input(type = "text", name = "textfield")
-					input(type = "submit")
+				p Enter XQUERY or FULL-TEXT search here:
+				form(action="/browse", method="get")
+					+input-group("","")
+						+input("text","queryfield","Enter XQUERY here","XQUERY Search", "queryfield")
+						+input("text","fullfield","Enter FULL-TEXT here","FULL-TEXT Search", "fullfield")
+						+submit("Register")
 			+panel-default(type)
 				each item in place
 					if type === "Browse" && display === "browse"
 						p #[a(href="browse/display/#{item}") !{item}] #[a(href="browse/raw-display/#{item}") Raw Text]
-					else if display === "human"
+					else
 						p !{item}
 	else
 		each item in place
