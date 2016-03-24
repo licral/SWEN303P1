@@ -1,19 +1,24 @@
 extends ../node_modules/jade-bootstrap/_bootstrap
 
-head
-	title=title
-
 block body
-	+navbar("Colenso Project", "dropdown_menu")
-		+nav_item("/") Home
-		+nav_item("browse", "active") Browse
-		+nav_item("upload") Upload
-	.container
-		h1 #{title}
-		p You are currently at 'Browse'
-			|Enter search here:
-		form(action = "/browse", method = "get")
-			input(type = "text", name = "textfield")
-			input(type = "submit")
-		h2 #{result}
-		p #{place}
+	if display !== "raw"
+		+navbar("Colenso Project", "dropdown_menu")
+			+nav_item("/") Home
+			+nav_item("/browse", "active") Browse
+			+nav_item("/upload") Upload
+		.container
+			h1 #{title}
+			if display === "browse"
+				p Enter XQUERY search here:
+				form(action = "/browse", method = "get")
+					input(type = "text", name = "textfield")
+					input(type = "submit")
+			+panel-default(type)
+				each item in place
+					if type === "Browse" && display === "browse"
+						p #[a(href="browse/display/#{item}") !{item}] #[a(href="browse/raw-display/#{item}") Raw Text]
+					else if display === "human"
+						p !{item}
+	else
+		each item in place
+			p #{item}
