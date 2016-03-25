@@ -3,8 +3,9 @@ extends ../node_modules/jade-bootstrap/_bootstrap
 block body
 	+navbar("Colenso Project", "dropdown_menu")
 		+nav_item("/", "active") Home
-		+nav_item("browse") Browse
-		+nav_item("upload") Upload
+		+nav_item("/browse") Browse
+		+nav_item("/search") Search
+		+nav_item("/upload") Upload
 	.container
 		h1= title
 		p Welcome to the Colenso Project letter viewer! Go to any of the pages using the navigation above to browse and upload letters. For more information go to #[a(href='http://www.williamcolenso.co.nz/') Colenso Project]

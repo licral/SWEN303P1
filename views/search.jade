@@ -1,0 +1,22 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+block body
+	+navbar("Colenso Project", "dropdown_menu")
+		+nav_item("/") Home
+		+nav_item("/browse") Browse
+		+nav_item("/search", "active") Search
+		+nav_item("/upload") Upload
+	.container
+		h1 #{title}
+		form(action="/search", method="get")
+			+tab-list(["XQUERY", "FULL-TEXT"],0)
+				+tab("XQUERY", "active")
+					+input("text","queryfield","Enter XQUERY here","", "queryfield")
+				+tab("FULL-TEXT")
+					+input("text","fullfield","Enter FULL-TEXT here","", "fullfield")
+			+submit("Search")
+		p 
+		if display === true
+			+panel-default("Search Results for '" + query + "'")
+				each item in place
+					p !{item}

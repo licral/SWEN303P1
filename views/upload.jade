@@ -3,9 +3,10 @@ extends ../node_modules/jade-bootstrap/_bootstrap
 block body
 	+navbar("Colenso Project", "dropdown_menu")
 		+nav_item("/") Home
-		+nav_item("browse") Browse
-		+nav_item("upload", "active") Upload
+		+nav_item("/browse") Browse
+		+nav_item("/search") Search
+		+nav_item("/upload", "active") Upload
 	.container
-		h1= title
-		p You are currently at Upload
+		h1 #{title}
+		p Select a file then upload it
 		#[+a-btn("#") Select file] #[+a-btn-primary("#") Upload File]
