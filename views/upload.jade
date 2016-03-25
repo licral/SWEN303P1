@@ -7,6 +7,6 @@ block body
 		+nav_item("/search") Search
 		+nav_item("/upload", "active") Upload
 	.container
-		h1 #{title}
 		p Select a file then upload it
+		form(method="post", enctype="multipart\/form-data", action="/nodejs-upload/")
 		#[+a-btn("#") Select file] #[+a-btn-primary("#") Upload File]

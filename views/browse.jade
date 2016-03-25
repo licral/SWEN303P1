@@ -8,9 +8,11 @@ block body
 			+nav_item("/search") Search
 			+nav_item("/upload") Upload
 		.container
-			h1 #{title}
 			each item in place
-				p #[a(href="browse/display/#{item}") !{item}] #[a(href="browse/raw-display/#{item}") Raw Text]
+				if display === "human"
+					p !{item}
+				else
+					p #[a(href="browse/display/#{item}") !{item}] #[a(href="browse/raw-display/#{item}") Raw Text]
 	else
 		each item in place
 			p #{item}

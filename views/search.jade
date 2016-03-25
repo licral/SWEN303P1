@@ -7,7 +7,6 @@ block body
 		+nav_item("/search", "active") Search
 		+nav_item("/upload") Upload
 	.container
-		h1 #{title}
 		form(action="/search", method="get")
 			+tab-list(["XQUERY", "FULL-TEXT"],0)
 				+tab("XQUERY", "active")
@@ -18,5 +17,10 @@ block body
 		p 
 		if display === true
 			+panel-default("Search Results for '" + query + "'")
-				each item in place
-					p !{item}
+				if type === "cheerio"
+					each xml in place
+						if xml.id !== undefined
+							p #[a(href="search/display/#{xml.id}") !{xml.id}] #[a(href="search/raw-display/#{xml.id}") Raw Text]
+				else
+					each item in place
+						p !{item}
