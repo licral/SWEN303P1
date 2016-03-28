@@ -13,3 +13,6 @@ block body
 			input(type="file", name="file")
 			p 
 			+submit("Upload")
+			p 
+		if uploaded === true
+			+alert-ix-success("Upload Successful")

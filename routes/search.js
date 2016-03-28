@@ -87,11 +87,8 @@ router.get('/raw-display/:id', function(req, res, next) {
 			if(error){
 				console.error(error);
 			} else {
-				res.render('browse', {
-					title: "Browse",
-					display: "raw",
-					place: result.result.split("\n")
-					});
+				res.set('Content-Type', 'text/xml');
+				res.send(result.result);
 			}
 		});
 });

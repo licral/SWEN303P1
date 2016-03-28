@@ -12,7 +12,7 @@ router.use(upload.single('file'));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('upload', { title: 'Upload' });
+	res.render('upload', { title: 'Upload', uploaded: false});
 });
 
 router.post('/', function(req, res) {
@@ -24,10 +24,12 @@ router.post('/', function(req, res) {
 					console.error(error);
 				} else {
 					console.log("File uploaded")
+					res.render('upload', { title: 'Upload', uploaded: true});
 				}
 		});
+	} else {
+		res.render('upload', { title: 'Upload', uploaded: false});
 	}
-	res.redirect('/');
 });
 
 module.exports = router;

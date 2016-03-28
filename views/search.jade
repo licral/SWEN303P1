@@ -1,5 +1,8 @@
 extends ../node_modules/jade-bootstrap/_bootstrap
 
+append styles
+	link(rel="stylesheet", href="/stylesheets/style.css")
+
 block body
 	+navbar("Colenso Project", "dropdown_menu")
 		+nav_item("/") Home
@@ -19,9 +22,14 @@ block body
 		if display === true
 			+panel-default("Search Results for '" + query + "'")
 				if type === "cheerio"
-					each xml in place
-						if xml.id !== undefined
-							p #[a(href="search/display/#{xml.id}") !{xml.id}] #[a(href="search/raw-display/#{xml.id}") Raw Text]
+					table
+						tbody
+							each xml in place
+								if xml.id !== undefined
+									tr
+										td #[a(href="search/display/#{xml.id}") !{xml.id}]
+										td #[a(href="search/raw-display/#{xml.id}") Raw Text]
+										td #[a(href="search/edit/#{xml.id}") Edit]
 				else
 					each item in place
 						p !{item}
