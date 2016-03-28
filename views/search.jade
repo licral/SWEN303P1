@@ -7,6 +7,7 @@ block body
 		+nav_item("/search", "active") Search
 		+nav_item("/upload") Upload
 	.container
+		h1 #{title}
 		form(action="/search", method="get")
 			+tab-list(["XQUERY", "FULL-TEXT"],0)
 				+tab("XQUERY", "active")

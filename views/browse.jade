@@ -8,6 +8,8 @@ block body
 			+nav_item("/search") Search
 			+nav_item("/upload") Upload
 		.container
+			if display !== "human"
+				h1 #{title}
 			each item in place
 				if display === "human"
 					p !{item}
