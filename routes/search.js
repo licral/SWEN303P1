@@ -65,7 +65,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/display/:id', function(req, res, next) {
-	var id = req.url.split('/');
 	client.execute(xquery + " //TEI[@xml:id='" + req.params.id + "']",
 		function(error, result){
 			if(error){
@@ -81,7 +80,6 @@ router.get('/display/:id', function(req, res, next) {
 });
 
 router.get('/raw-display/:id', function(req, res, next) {
-	var id = req.url.split('/');
 	client.execute(xquery + " //TEI[@xml:id='" + req.params.id + "']",
 		function(error, result){
 			if(error){
@@ -93,4 +91,18 @@ router.get('/raw-display/:id', function(req, res, next) {
 		});
 });
 
+router.get('/edit/:id', function(req, res, next) {
+	client.execute(xquery + " //TEI[@xml:id='" + req.params.id + "']",
+		function(error, result){
+			if(error){
+				console.error(error);
+			} else {
+				res.render('browse', {
+					title: "Edit",
+					display: "edit",
+					place: result.result.split("\n")
+					});
+			}
+		});
+});
 module.exports = router;

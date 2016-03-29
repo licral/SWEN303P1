@@ -13,7 +13,7 @@ block body
 		if display === "human"
 			each item in place
 				p !{item}
-		else
+		else if display === "browse"
 			h1 #{title}
 			+panel-default("")
 				table
@@ -23,3 +23,11 @@ block body
 								td #[a(href="browse/display/#{item}") !{item}]
 								td #[a(href="browse/raw-display/#{item}") Raw Text]
 								td #[a(href="browse/edit/#{item}") Edit]
+		else
+			h1 #{title}
+			form(action="/browse/#{url}", method="post")
+				+submit("Save")
+				p
+				textarea(name="textbox")
+					each item in place
+						| #{item}

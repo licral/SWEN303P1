@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res) {
 	if(req.file){
 		var xml = req.file.buffer.toString();
-		client.execute('ADD TO "Colenso" " ' + xml + '"',
+		client.execute('ADD TO "Colenso/' + req.file.originalname + '" "' + xml + '"',
 			function(error, result){
 				if(error){
 					console.error(error);
